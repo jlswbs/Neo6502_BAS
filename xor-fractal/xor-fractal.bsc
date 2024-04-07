@@ -1,0 +1,33 @@
+'
+'	Simple XOR fractal
+'
+cls
+let cnt = 0
+let x = 0
+let y = 0
+let offx = 3
+let offy = 48
+let out = 0
+
+text "Neo6502 XOR fractal" ink 2 dim 2 to 48,14
+text "JLS 2024" ink 3 dim 1 to 140,220
+
+repeat
+
+	call render()
+
+until 0
+end
+
+proc render()
+
+	out = ((x^y)^cnt)%64
+	rect ink out solid offx+(5*x), offy+(5*y) to offx+((5*x)+(out%5)), offy+((5*y)+(out%5))
+	sound 0 clear 8*out, out
+	x = x + 1
+	if x > 62 then x = 0: y = y + 1
+	if y > 31 then y = 0
+	cnt = cnt + 1
+
+endproc
+
