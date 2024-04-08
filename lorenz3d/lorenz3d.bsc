@@ -1,0 +1,32 @@
+'
+'	Lorenz3D chaotic map
+'
+
+cls
+
+x = 0.5
+y = 0.5
+z = -1.0
+
+text "Neo6502 Lorenz-3D map" ink 2 dim 2 to 36, 10
+text "JLS 2024" ink 3 dim 1 to 140, 220
+
+repeat
+
+	nx = x
+	ny = y
+	nz = z
+  
+	x = nx * ny - nz
+	y = nx
+	z = ny
+
+	outx = 160 + int(64 * x)
+	outy = 120 + int(64 * y)
+
+	plot ink rand(16) to outx, outy
+	sfx 0, outx % 24
+
+until 0
+end
+
