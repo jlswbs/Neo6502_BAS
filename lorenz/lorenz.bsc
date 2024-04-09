@@ -1,0 +1,45 @@
+'
+'	Lorenz chaotic attractor
+'
+
+cls
+
+x = 0
+y = 1
+z = 0
+s = 10
+r = 28
+b = 8/3
+dt = 0.007
+col = 1
+cnt = 0
+
+text "Neo6502 Lorenz attractor" ink 2 dim 2 to 18, 10
+text "JLS 2024" ink 3 dim 1 to 140, 220
+
+repeat
+
+	xn = s * (y-x)
+	yn = (r*x) - y - (x*z)
+	zn = (x*y) - (b*z)
+
+	x = x + xn * dt
+	y = y + yn * dt
+	z = z + zn * dt
+
+	outx = 160 + int(6 * x)
+	outy = 120 + int(3 * y)
+
+	plot ink col to outx, outy
+	sound 0 clear 4 * outx, 5
+
+	if cnt = 500
+		cnt = 0
+		col = 1 + rand(15)
+	endif
+
+	cnt = cnt + 1
+
+until 0
+end
+
