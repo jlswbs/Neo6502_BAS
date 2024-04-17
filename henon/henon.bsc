@@ -1,0 +1,32 @@
+'
+'	Henon chaotic map
+'
+
+cls
+
+x = 0.1
+y = 0.1
+a = 1.4
+b = 0.3
+
+text "Neo6502 Henon map" ink 2 dim 2 to 60, 10
+text "JLS 2024" ink 3 dim 1 to 140, 220
+
+repeat
+
+	nx = x
+	ny = y
+       
+	x = b * ny + 1.0 - a * (nx * nx)
+	y = nx
+
+	outx = 160 + int(96 * y)
+	outy = 120 + int(64 * x)
+
+	plot ink 15 to outx, outy
+	sound 0 clear 4 * outx, outy
+	wait 10
+
+until 0
+end
+
