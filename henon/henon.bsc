@@ -24,8 +24,9 @@ repeat
 	outy = 120 + int(64 * x)
 
 	plot ink 15 to outx, outy
-	sound 0 clear 4 * outx, outy
-	wait 10
+	sfx 0, outx % 24
+	val = 1 + (outy / 16)
+	wait val
 
 until 0
 end
