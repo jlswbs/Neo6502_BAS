@@ -1,0 +1,38 @@
+'
+'	Gingerbreadman chaotic map
+'
+
+cls
+
+x = 0.2
+y = -0.7
+cnt = 0
+a = 15
+
+text "Neo6502 Gingerbread map" ink 2 dim 2 to 24, 10
+text "JLS 2024" ink 3 dim 1 to 140, 220
+
+repeat
+
+	nx = x
+	ny = y
+       
+	x = 1.0 - ny + abs(nx)
+	y = nx
+
+	outx = 120 + int(16 * y)
+	outy = 82 + int(16 * x)
+
+	plot ink a to outx, outy
+	sfx 0, outx % 24
+
+	if cnt = 500
+ 		cnt = 0
+		a = rand(16)
+	endif
+
+	cnt = cnt + 1
+
+until 0
+end
+
