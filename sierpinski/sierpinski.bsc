@@ -1,0 +1,50 @@
+'
+'	Sierpinski triangle fractal
+'
+
+a = 15
+
+cls
+
+text "Neo6502 Sierpinski" ink 2 dim 2 to 52, 10
+text "JLS 2024" ink 3 dim 1 to 140, 220
+
+repeat
+
+	h = 0
+
+	repeat
+
+    		h = h + 1
+    		x = h
+    		z = x & y - x
+
+    		if z = 0
+
+        		xz = (x - y >> 1)
+        		yz = y
+
+        	if yz = 128
+
+            		y = 0
+			a = 1 + rand(15)
+
+        	endif
+
+		outx = 160 + xz
+		outy = 56 + yz
+
+		plot ink a to outx, outy
+
+		sfx 0, outx % 24
+
+    	endif
+
+    	until (h >= y)
+	
+	y = y + 1
+
+until 0
+
+end
+
