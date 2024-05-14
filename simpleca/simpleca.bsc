@@ -1,0 +1,44 @@
+'
+'	Simple 1D Cellular Automata
+'
+cls
+
+width = 153
+height = 74
+col = 0
+dim state(width)
+
+text "Neo6502 Simple 1D CA" ink 2 dim 2 to 42, 14
+text "JLS 2024" ink 3 dim 1 to 140, 220
+
+for i = 0 to width
+	
+	state(i) = rand(2)
+
+next
+
+repeat
+
+	for y = 0 to height
+
+		for x = 0 to width
+
+			k = k ^ state(x)
+      			state(x) = k
+      
+      			if k = 1 then col = 15
+			if k = 0 then col = 0
+
+			outx = 3 + x
+			outy = 24 + y
+
+			plot ink col to 2*outx, 2*outy
+			sfx 0, k
+	
+		next
+
+	next
+
+until 0
+
+end	
