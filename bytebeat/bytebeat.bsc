@@ -1,0 +1,39 @@
+'
+'	ByteBeat 1D Cellular Automata
+'
+cls
+
+width = 144
+height = 80
+col = 1
+
+text "Neo6502 ByteBeat 1D CA" ink 2 dim 2 to 30, 14
+text "JLS 2024" ink 3 dim 1 to 140, 220
+
+repeat
+
+	for y = 0 to height
+
+		for x = 0 to width
+
+			k = (t^t>>9)-(t|t>>10)
+
+			outx = 8 + (k%WIDTH)
+			outy = 22 + y
+
+			plot ink col to 2*outx, 2*outy
+			sfx 0, k%24
+
+			t = t + 8
+	
+		next
+
+
+
+	next
+
+	col = 1 + (k%15)
+
+until 0
+
+end	
