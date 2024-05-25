@@ -1,0 +1,42 @@
+'
+'	Langton Ant Cellular Automata
+'
+cls
+
+width = 152
+height = 80
+offx = 8
+offy = 44
+
+text "Neo6502 Langton Ant CA" ink 2 dim 2 to 30, 14
+text "JLS 2024" ink 3 dim 1 to 140, 220
+	
+antsx = rand(width)
+antsy = rand(height)
+antsdir = rand(4)
+
+repeat
+
+
+		if point(offx + (2*antsx), offy + (2*antsy)) > 0 then antsdir = antsdir - 1 : c = 0
+		if point(offx + (2*antsx), offy + (2*antsy)) = 0 then antsdir = antsdir + 1 : c = 15 : sfx 0, (antsx^antsy)%24
+		
+		plot ink c to offx + (2*antsx), offy + (2*antsy)
+		plot ink 10 to offx + ((2*antsx)+1), offy + ((2*antsy)+1)
+
+		if antsdir > 3 then antsdir = 0
+		if antsdir < 0 then antsdir = 3
+
+		if antsdir = 0 then antsx = antsx + 1
+		if antsdir = 1 then antsy = antsy - 1
+		if antsdir = 2 then antsx = antsx - 1
+		if antsdir = 3 then antsy = antsy + 1
+
+		if antsx > width then antsx = 0
+		if antsx < 0 then antsx = width
+		if antsy > height then antsy = 0
+		if antsy < 0 then antsy = height
+
+until 0
+
+end
