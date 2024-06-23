@@ -1,0 +1,52 @@
+'
+'	Dendrites 1D Cellular Automata
+'
+cls
+
+width = 154
+height = 74
+count = 0
+dim parent(width)
+dim child(width)
+
+text "Neo6502 Dendrites 1D CA" ink 2 dim 2 to 24, 14
+text "JLS 2024" ink 3 dim 1 to 140, 220
+
+parent(77) = 3
+
+repeat
+
+	for y = 0 to height
+
+		for x = 0 to width
+
+			if x = 0 then count = parent(width-1) + parent(0) + parent(1)
+			if x = (width-1) then count = parent(width-2) + parent(width-1) + parent(0)
+			if (x > 0 & x < (width-1)) then count = parent(x-1) + parent(x) + parent(x+1)
+
+			if (count = 0 | count = 4 | count = 6) then child(x) = 0
+        		if (count = 3 | count = 5 ) then child(x) = 1
+        		if (count = 1 | count = 2 ) then child(x) = 2
+
+			if child(x) = 0 then coll = 0
+        		if child(x) = 1 then coll = 3 : sfx 0, 1
+        		if child(x) = 2 then coll = 1 : sfx 0, 2
+
+			outx = 3 + x
+			outy = 24 + y
+
+			plot ink coll to 2*outx, 2*outy
+	
+		next
+
+		for i = 0 to width
+	
+			parent(i) = child(i)
+
+		next
+
+	next
+
+until 0
+
+end	
